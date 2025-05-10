@@ -1,11 +1,20 @@
 const express = require('express')
 const axios = require('axios')
 
+
+
 const PORT = 9876;
 const app = express();
 const windowSize = 10;
 const timeOut = 500
 
+
+//i need .env but doe to time constraints i kept it as it is 
+
+const authDetails = {
+  token_type: "Bearer",
+  access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQ2ODUzOTkyLCJpYXQiOjE3NDY4NTM2OTIsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6ImRhODgwZmViLTY5ZmQtNGFkMC1hOTUxLTI0NDQ3OTg4MGZhZSIsInN1YiI6Im5pa2hpbHJhanB1cm9oaXRua3BAZ21haWwuY29tIn0sImVtYWlsIjoibmlraGlscmFqcHVyb2hpdG5rcEBnbWFpbC5jb20iLCJuYW1lIjoibmlraGlsIHB1cm9oaXQiLCJyb2xsTm8iOiI0YWQyMmNzMDY2IiwiYWNjZXNzQ29kZSI6IlVudkN1cSIsImNsaWVudElEIjoiZGE4ODBmZWItNjlmZC00YWQwLWE5NTEtMjQ0NDc5ODgwZmFlIiwiY2xpZW50U2VjcmV0IjoieHZNdm1mVm56eU5TbUh2VCJ9.dIqIZN4gRt7jKialex4kZL4HuCmdO_k5M9-m1gYjDo4"
+};
 
 let windowNumbers = [];  
 
@@ -31,7 +40,14 @@ app.get('/numbers/:numberid', async (req, res) => {
       let numbersFromAPI = [];
 
       try {
-        const response = await axios.get(url, { timeout: timeOut });
+        const response = await axios.get(url, { 
+          
+          
+          timeout: timeOut,
+          headers : {
+            'Authorization': `${authDetails.token_type} ${authDetails.access_token}`
+          }
+        });
         numbersFromAPI = response.data.numbers || [];
       } catch (err) {
         
