@@ -11,8 +11,8 @@ Maintain quick responses, never exceeding 500 milliseconds. Format response as f
 
 
 
+how i approched this :
 
-
-my method:
 
 created a index.js
+
