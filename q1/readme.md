@@ -8,3 +8,11 @@ Ensure stored numbers are unique, disregarding duplicates. Ignore responses taki
 If stored numbers are fewer than the window size, calculate their average. Limit stored numbers to the window size. Upon breaching the window size, replace the oldest number with the newest one.
 Respond to each request with the numbers stored before and after the latest API call, along with the average of numbers matching the window size.
 Maintain quick responses, never exceeding 500 milliseconds. Format response as follows:
+
+
+
+
+
+my method:
+
+created a index.js
