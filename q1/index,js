@@ -18,10 +18,43 @@ const endpoints = {
   };
 
 
+app.get('/numbers/:numberid', async (req, res) => {
+    const numberid = req.params.numberid;
 
-  
+    if (!endpoints[numberid]) {
+        return res.status(400);
+      }
+    
+      const url = endpoints[numberid];
+      const prevState = [...windowNumbers];
+
+      let numbersFromAPI = [];
+
+      try {
+        const response = await axios.get(url, { timeout: timeOut });
+        numbersFromAPI = response.data.numbers || [];
+      } catch (err) {
+        
+        numbersFromAPI = [];
+      }
 
 
+    // forget duplicates
+  for (const num of numbersFromAPI) {
+    if (!windowNumbers.includes(num)) {
+      windowNumbers.push(num);
+    }
+  }
+
+
+  //  window ] limit
+  if (windowNumbers.length > windowSize) {
+    windowNumbers = windowNumbers.slice(-windowSize);
+  }
+
+//calc avg
+
+const avg = (windowNumbers.reduce((a, b) => a + b, 0) / windowNumbers.length) || 0;
 
 
 
