@@ -57,4 +57,12 @@ app.get('/numbers/:numberid', async (req, res) => {
 const avg = (windowNumbers.reduce((a, b) => a + b, 0) / windowNumbers.length) || 0;
 
 
+res.json({
+    windowPrevState: prevState,
+    windowCurrState: windowNumbers,
+    numbers: numbersFromAPI,
+    avg: parseFloat(avg.toFixed(2))
+  });
+});
+
 
