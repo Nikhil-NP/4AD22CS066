@@ -9,7 +9,7 @@ const timeOut = 500;
 // Authentication details
 const authDetails = {
   token_type: "Bearer",
-  access_token: process.env('token')
+  access_token: process.env.token
  
 };
 
